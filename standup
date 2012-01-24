@@ -12,5 +12,5 @@ shift
 }
 
 [ "$action" = "standup" ] && {
-     ruby $TODO_ACTIONS_DIR/standup.rb "$TODO_DIR" 
+     ruby $TODO_ACTIONS_DIR/standup.rb
 }
