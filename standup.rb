@@ -14,7 +14,7 @@ done.reverse!
 data = /x\s(?<date>\d{4}-\d{2}-\d{2})\s(?<task>.*)/.match(done[0]);
 yesterday  = Date.strptime(data[:date], '%Y-%m-%d')
 
-puts "========================================"
+puts "\n\n========================================"
 puts " Yesterday: #{yesterday}"
 puts "========================================"
 
@@ -29,9 +29,19 @@ done.each { |item|
 }
 
 
-
 #read TODO file
+todo = File.read(ENV['TODO_FILE'])
+todo = todo.split($/)
+# ==============================
+#    generate TODAY's List
+# ==============================
 
-#generate TODAY's List
+puts "\n\n========================================"
+puts " Today: #{Date.today}"
+puts "========================================"
 
+#dump  TODAY's List
+todo.each { |task| 
+    puts "- #{task}"
+}
 #generate IMPEDIMENT's List
