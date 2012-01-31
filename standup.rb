@@ -2,14 +2,18 @@
 
 require 'date'
 
+IMPEDIMENT_TAG = "@impediment"
+
+today = Date.today
+todays_completed = []
+impediments = []
+
+
 #read DONE file
 done = File.read(ENV['DONE_FILE'])
 done = done.split($/)
 done.reverse!
 
-
-today = Date.today
-todays_completed = []
 
 # ==============================
 #    generate YESTERDAY's List
@@ -23,7 +27,7 @@ begin
     i += 1
 end until today != yesterday
 
-puts "\n\n========================================"
+puts "\n========================================"
 puts " Yesterday: #{yesterday}"
 puts "========================================"
 
@@ -47,7 +51,7 @@ todo = todo.split($/)
 #    generate TODAY's List
 # ==============================
 
-puts "\n\n========================================"
+puts "\n========================================"
 puts " Today: #{Date.today}"
 puts "========================================"
 
@@ -58,6 +62,22 @@ todays_completed.each { |task|
 
 #dump  TODAY's List
 todo.each { |task| 
-    puts "- #{task}"
+    if task.include?(IMPEDIMENT_TAG)
+	impediments.push(task)
+    else
+        puts "- #{task}"
+    end
 }
 #generate IMPEDIMENT's List
+if impediments.length > 0
+    puts "\n========================================"
+    puts " Impediments: #{Date.today}"
+    puts "========================================"
+
+    impediments.each { |task|
+        puts"i #{task}"
+    }
+end
+
+
+puts "\n"
