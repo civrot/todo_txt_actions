@@ -4,10 +4,9 @@ action=$1
 shift
 
 [ "$action" = "usage" ] && {
-  echo " Generates a stand up report:"
-  echo " standup"
-  echo " [more info needed]"
-  echo ""
+  echo "  Customized standup:"
+  echo "    standup"
+  echo "      Generates a report of tasks completed \"Yesterday\", and tasks left to do"
   exit
 }
 
