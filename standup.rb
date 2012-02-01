@@ -4,13 +4,12 @@ require 'date'
 IMPEDIMENT_TAG = "@impediment"
 
 
-def usage
+if ARGV[0] == "usage"
   puts "  Standup Report:"
   puts "    standup"
   puts "      Generates a report of tasks completed \"Yesterday\", and tasks left to do"
-end
 
-def dump_report
+else
 
   today = Date.today
   todays_completed = []
@@ -88,11 +87,6 @@ def dump_report
   end
 
   puts "\n"
-end
 
-if ARGV.length == 0 || ARGV[0] == "usage"
-  usage
-else
-  dump_report
 end
 
