@@ -8,6 +8,7 @@ if ARGV[0] == "usage"
   puts "  Standup Report:"
   puts "    standup"
   puts "      Generates a report of tasks completed \"Yesterday\", and tasks left to do"
+  puts "  "
 
 else
 
