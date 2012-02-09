@@ -30,8 +30,8 @@ else
   #define 'yesterday' as the last date on the done file that is not 'today'
   i = 0
   begin
-      data = /x\s(?<date>\d{4}-\d{2}-\d{2})\s(?<task>.*)/.match(done[i]);
-      yesterday  = Date.strptime(data[:date], '%Y-%m-%d')
+      data = done[i].split("\t")
+      yesterday  = Date.strptime(data[1], '%Y-%m-%d')
       i += 1
   end until today != yesterday
 
@@ -41,13 +41,13 @@ else
 
   #dump out the list
   done.each { |item|
-      data =  /x\s(?<date>\d{4}-\d{2}-\d{2})\s(?<task>.*)/.match(item)
-      task_date = Date.strptime(data[:date], '%Y-%m-%d')
+      data = item.split("\t")
+      task_date = Date.strptime(data[1], '%Y-%m-%d')
       #puts task_date
       if task_date == yesterday 
-	  puts "+ #{data[:task]}"
+	  puts "+ #{data[3]}"
       elsif task_date == today
-	  todays_completed.push(data[:task])       
+	  todays_completed.push(data[3])       
       end
   }
 
